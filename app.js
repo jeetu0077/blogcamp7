@@ -24,6 +24,12 @@ var commentRoutes    = require("./routes/comment"),
 	indexRoutes      = require("./routes/index");
 
 //seedDB(); // seed the database
+app.get('/app/:id', checkUserAuth, findApp, renderView, sendJSON);
+
+function checkUserAuth(req, res, next) {
+  if (req.session.user) return next();
+  return next(new NotAuthorizedError());
+}
 mongoose.connect("mongodb://localhost/yelp_camp_11", {
   useNewUrlParser: true,
   useUnifiedTopology: true

@@ -65,14 +65,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 //SERVER===============================================SERVER=======================================================SERVER=========
-let workers = process.env.WEB_CONCURRENCY || 2;
-
-let maxJobsPerWorker = 50;
-
-workQueue.process(maxJobsPerWorker, async (job) => {
-  // ...
-});
-
 app.listen(process.env.PORT || 3000, function(){
 	console.log("The YelpCamp Server Has Launched!")
 });
